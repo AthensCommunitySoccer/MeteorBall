@@ -1,0 +1,544 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Athens Community Soccer</title>
+  <link href="sticky-footer.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+
+<body>
+ <div class="container-fluid">
+  {{ > header }}
+  {{ > main }}
+ </div>
+ <script src="/lib/jquery/jquery.min.js"></script>
+ <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+<template name="header">
+ <div class="row">
+  <div class="col-xs-12">
+   <img src="banner.jpg" class="img-responsive" alt="">
+  </div>
+ </div>
+</template>
+
+<template name="main">
+ {{#if loggingIn}}
+
+ {{else}}
+  {{#if currentUser}}
+   {{ > dashboard }}
+  {{else}}
+   {{ > mainout }}
+  {{/if}}
+ {{/if}}
+</template>
+
+<template name="mainout">
+ <div class="row">
+  <div class="col-xs-5 col-xs-offset-1">
+   {{ > welcome }}
+  </div>
+  <div class="col-xs-5 col-xs-offset-1">
+   {{ > sidebar }}
+  </div>
+ </div>
+</template>
+
+<template name="welcome">
+ <div class="row">
+  <div class="col-xs-12">
+   <p>
+    <h4>Welcome to Athens Community Soccer...</h4>
+   </p>
+  </div>
+  <div class="col-xs-12"><p>&nbsp;</p></div>
+  <div class="col-xs-12">
+   <p>
+    Our goal is to give everyone who wants to play soccer the opportunity to do so, regardless of age or skill level.
+    We are a non-profit organization run by volunteers from the local soccer community in Athens, Ohio. 
+   </p>
+   <p> For more information
+    click one of the buttons below, then sign up using the sign up for soccer form opposite. If you have already signed up,
+    you can using your email address and password to sign-in for schedules, team management and other information.
+   </p>
+  </div>
+  <div class="col-xs-12"></div>
+ </div>
+ <div class="row">
+  <div class="col-xs-12"><p>&nbsp;</p></div>
+  <div class="col-xs-3">
+   <button class="btn btn-primary" data-toggle="modal" data-target="#hpmkids">Kids Soccer</button>
+  </div>
+  <div class="col-xs-3 col-xs-offset-1">
+   <button class="btn btn-primary" data-toggle="modal" data-target="#hpmadults">Adult Soccer</button>
+  </div>
+  <div class="col-xs-3 col-xs-offset-1">
+   <button class="btn btn-primary" data-toggle="modal" data-target="#hpminfo">More Information</button>
+  </div>
+ </div>
+ {{ > mkidssoccer }}
+ {{ > madultsoccer }}
+ {{ > msoccerinfo }}
+</template>
+
+<template name="mkidssoccer">
+ <div class="modal fade" id="hpmkids" tabindex="-1" role="dialog" aria-labelledby="hpmkidsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     <h4 class="modal-title" id="hpmkidsLabel">Kids Soccer</h4>
+    </div>
+    <div class="modal-body">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Soccer Club Membership - $20 per year</h4>
+      </div>
+      <div class="panel-body">
+       Youth players must be a member of Athens Community Soccer in order to be eligible to play. Membership runs January to December, and costs $20 per player. In order to
+       qualify for youth membership, a player must be at least 3 years of age and under 18. Our Youth program is designed to provide kids with a positive soccer experience,
+       every kid gets to participate and play equally, regardless of skill level. Our volunteer coaching staff are usually experienced soccer players who will try to group
+       kids together in a fair and balanced manner. Our goal is to give kids the opportunity to play soccer in a safe and fun environment. To sign your child up, simply
+       create a parent account using our sign up for soccer form on our website, then log in and add each child using the dashboard. The membership fee of $20 is the only cost
+       involved and youth players can participate in both Saturday and Sunday sessions in the Spring and Fall.
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Kids aged 3 to 6 (Saturdays 10am - 10.40am) (Sundays 2pm - 2.40pm)</h4>
+      </div>
+      <div class="panel-body">
+       This program runs from April 26th until June 15th. Saturday sessions are at the Athens Soccer Complex (by Walmart), and Sunday sessions are at the Athens High School Turf Field.
+       Kids must wear shin guards covered with socks, but soccer cleats are optional. This program consists of a short warm up, the monsters game, a new game/activity and wraps up with small sided soccer games, usually 3v3. The Saturday and Sunday sessions are the same each week. We adapt the <a href="http://www.saysoccer.org">SAY Soccer</a> activities so that they are suitable for this younger age group. The focus of the program is to get the kids
+       comfortable with the ball and to build their confidence while having fun. The program is offered again in the fall, usually in early August to early October. 
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Kids aged 6 to 12 (Saturdays 9.45am - 11am) (Sundays 1pm - 3pm)</h4>
+      </div>
+      <div class="panel-body">
+       This program runs from April 26th until June 15th. Saturday sessions are at the Athens Soccer Complex (by Walmart), and Sunday sessions are at the Athens High School Turf field.
+       Kids must wear shin guards covered with socks, and soccer cleats are recommended. This program on Saturdays consists of a 15 minute training session, followed by a
+       small sided game that lasts the rest of the session. Coaches monitor the kids, keep the teams balanced and provide individual coaching to kids as they play. On Sundays
+       the kids play in a Futsal environment, typically coaches, parents and sometimes local players, will participate on the field helping the kids learn positioning, passing
+       and new skills while playing the game. The program is offered again in the fall, if there is sufficient demand, we will continue the program through the summer months.
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Kids aged 12 to 17 (Sundays 1pm - 3pm)</h4>
+      </div>
+      <div class="panel-body">
+       This program runs from early Spring. The Sunday sessions are at the Athens High School Turf field. Kids must wear shin guards covered with socks, and soccer cleats are
+       highly recommended. Skilled youth players are welcome to join the faster paced game with adults, or they can play in the slower paced family Futsal environment with the
+       kids aged 6-12. The Sunday futsal program is great for kids who play other sports and still want to play soccer, or for kids involved in travel / rec soccer who want
+       to build up their skills and experience. The times and availability of this program are subject to change based around the Athens High School use of the Turf field and
+       availability of the Futsal volunteers to setup and tear down the playing area.
+      </div>
+     </div>
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="madultsoccer">
+ <div class="modal fade" id="hpmadults" tabindex="-1" role="dialog" aria-labelledby="hpmadultsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     <h4 class="modal-title" id="hpmadultsLabel">Adult Soccer</h4>
+    </div>
+    <div class="modal-body">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Soccer Club Membership - $35 per year</h4>
+      </div>
+      <div class="panel-body">
+       Players must be a member of Athens Community Soccer in order to be eligible to play. Membership runs January to December, and costs $35 per player. In order to qualify
+       for adult membership, a player must be 18 years of age and in good standing with <a href="http://www.ussoccer.com">US Soccer</a>. To join, simply use the sign-up for
+       soccer form on our website, or sign-up in person at one of our games. Once you have signed up, you can add the 2014 membership to your account. Members can play in
+       League 1, League 2 and/or Futsal. You can sign-up at any time during the year.
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">League 1 - Competitive 11v11 Soccer (Saturday mornings)</h4>
+      </div>
+      <div class="panel-body">
+       League 1 is a competitive soccer league for experienced players. League 1 offers a high quality 11v11 soccer experience, with full 90-minute games on a
+       <a href="http://www.fifa.com">FIFA</a> regulation sized pitch. League 1 maintains standings and keeps scores. League 1 players are expected to help out as assistant
+       referees or fourth officials during the year. League 1 is played from mid-April until mid-November. There is no slide tackling, games are kept competitive but friendly, 
+       and referee fees are typically $1 per player per week.
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">League 2 - Non-competitive 7v7 Soccer (Saturday mornings)</h4>
+      </div>
+      <div class="panel-body">
+       League 2 is a recreational non-competitive soccer league for beginners and players looking for a casual soccer experience. League 2 offers a friendly 7v7 soccer
+       experience, with 46-minute games on a scaled down soccer field. League 2 does not maintain score and no standings are kept. League 2 players are expected to play in
+       a friendly and non-aggressive manner. Players are expected to use common sense and avoid dangerous situations by simply backing off the ball. There is no slide tackling,
+       and referee fees are typically $1 per player per week. Games are sometimes played as 8v8 if too many substitutes show up, at the referees discretion.
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Futsal - Recreational (Sundays 1pm - 3pm)</h4>
+      </div>
+      <div class="panel-body">
+       Futsal is very similar to soccer, but is played with a slightly heavier ball and has a focus on footwork and passing. Futsal is currently offered on Sundays at the
+       Athens High School Turf Football Field in The Plains. Futsal is a casual and fun recreational environment, similar to League 2. Unlike League 1 and League 2, Futsal
+       has no assigned teams, players are assigned to a team / game as they show up. Futsal typically has a kids/family game and one or more slightly faster paced adult games. It is played with no goal keepers and smaller Futsal goals. There are no referee fees for Sunday Futsal. Sign-in and check the schedule for other indoor futsal options
+       on weekdays.
+      </div>
+     </div>
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="msoccerinfo">
+ <div class="modal fade" id="hpminfo" tabindex="-1" role="dialog" aria-labelledby="hpminfoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     <h4 class="modal-title" id="hpminfoLabel">More Information</h4>
+    </div>
+    <div class="modal-body">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Contact Information</h4>
+      </div>
+      <div class="panel-body">
+       <ul class="unstyled">
+        <li><span class="glyphicon glyphicon-inbox"></span> info@athenscountysoccer.org</li>
+        <li><span class="glyphicon glyphicon-phone-alt"></span> 740.590.6644</li>
+        <li><span class="glyphicon glyphicon-envelope"></span> Athens Community Soccer, 4820 Fisher Road, Athens, OH 45701</li>
+        <li><span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/AthensCommunitySoccer">Facebook Page</a></li>
+       </ul>
+      </div>
+     </div> 
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">About Athens Community Soccer</h4>
+      </div>
+      <div class="panel-body">
+       Athens Community Soccer is a non-profit organization run by volunteers from the local soccer community. Our programs are affiliated with <a href="http://www.fifa.com">FIFA</a> and <a href="http://www.ussoccer.com">US Soccer</a>. Youth Soccer affiliation is through <a href="http://www.saysoccer.org">SAY Soccer</a>, and our Adult Soccer affiliation is through the <a href="http://www.usasa.com">United States Adult Soccer Association</a>. Our goal is simple - Everyone plays! Our mission is to create a safe and fun environment for everyone who wants to learn and play soccer. Our soccer community has players of all skills, ages and many different nationalities. Everyone is welcome. If you want to play, simply sign-up online or drop by during games to sign-up in person...
+      </div>
+     </div> 
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">Locations</h4>
+      </div>
+      <div class="panel-body">
+       <ul class="unstyled">
+	<li>Athens Soccer Complex - Saturdays (<a href="http://maps.google.com/?ie=UTF8&t=m&ll=39.334729,-82.065554&spn=0.008298,0.010772&z=15&source=embed">View Map</a>)</li>
+	<li>Athens High School Football Field - Sundays (<a href="https://maps.google.com/maps?q=Athens+High+School,+High+School+Road,+The+Plains,+OH&hl=en&ll=39.372277,-82.12821&spn=0.010434,0.013776&sll=39.334729,-82.065554&sspn=0.020878,0.027552&z=16">View Map</a>)</li>
+       </ul>
+      </div>
+     </div> 
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="sidebar">
+ <div class="row">
+  <div class="col-xs-12">
+   <p>&nbsp;</p>
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-xs-12">
+   {{ > existing }}
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-xs-12">
+   <p>&nbsp;</p>
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-xs-12">
+   {{ > newuser }}
+  </div>
+ </div>
+</template>
+
+<template name="newuser">
+<div class="panel panel-default">
+ <div class="panel-heading">
+  <h4 class="panel-title">New Player? Sign up</h4>
+ </div>
+ <div class="panel-body">
+  <form class="form-horizontal" role="form">
+   <div class="form-group">
+    <div class="col-xs-10">
+     <input type="text" class="form-control" id="acssignup" placeholder="Full Name">
+    </div> 
+    <div class="col-xs-10"></div>
+    <div class="col-xs-10">
+      <input type="email" class="form-control" id="acssignupemail" placeholder="Email">
+    </div> 
+    <div class="col-xs-10"></div>
+    <div class="col-xs-10">
+     <input type="password" class="form-control" id="acssignuppass" placeholder="Password">
+    </div> 
+    <div class="col-xs-10"><small>&nbsp;</small></div>
+    <div class="col-xs-10">
+     <button type="submit" class="btn btn-default acssignupsubmit">Sign up for Soccer</button>
+    </div> 
+    <div class="col-xs-10">
+     {{#if showBadEmail}}
+      {{ > badEmail }}
+     {{/if}}
+     {{#if showBadPass}}
+      {{ > badPass }}
+     {{/if}}
+     {{#if showAccountFail}}
+      {{ > accountFail }}
+     {{/if}}
+     {{#if showAccountOK}}
+      {{ > accountOK }}
+     {{/if}}
+    </div>
+   </div>
+  </form>
+ </div>
+</div>
+</template>
+
+<template name="existing">
+  <form class="form-horizontal" role="form" id="login-form">
+   <div class="form-group">
+    <div class="col-xs-10">
+     <input type="email" class="form-control" id="login-email" placeholder="Email">
+    </div> 
+    <div class="col-xs-10 col-xs-offset-1"></div>
+    <div class="col-xs-10">
+     <input type="password" class="form-control" id="login-password" placeholder="Password">
+    </div> 
+    <div class="col-xs-10 col-xs-offset-1"><small>&nbsp;</small></div>
+    <div class="col-xs-10">
+     <button type="submit" class="btn btn-default login-button">Sign in</button>
+    </div> 
+    <div class="col-xs-10 col-xs-offset-1">
+	{{#if loginBadEmail}}
+	  {{ > badEmail }}
+	{{/if}}
+	{{#if attemptLoginFAIL}}
+	  {{ > attemptFAIL }}
+	{{/if}}
+    </div>
+   </div>
+  </form>
+</template>
+
+<template name="footer">
+ <div id="footer">
+  <div class="container-fluid">
+   <div class="col-xs-10 col-xs-offset-1"><small>&nbsp;</small></div>
+   <div class="col-xs-10 col-xs-offset-1">
+    Copyright &copy; 2013-2014 Athens Community Soccer
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="badEmail">
+        <p class="text-danger">Please enter a valid Email address...</p>
+</template>
+
+<template name="badPass">
+        <p class="text-danger">Password must be at least 6 characters long...</p>
+</template>
+
+<template name="accountFAIL">
+        <p class="text-danger">Account creation failed. Already signed up?</p>
+</template>
+
+<template name="attemptFAIL">
+        <p class="text-danger">Invalid login.</p>
+</template>
+
+<template name="accountOK">
+        <p class="text-success">Account created. Please sign in.</p>
+</template>
+
+<template name="dashboard">
+ <div class="row">
+  <div class="col-xs-12">
+   &nbsp;
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-xs-6">
+   {{ > dashmain }}
+  </div>
+  <div class="col-xs-5 col-xs-offset-1">
+   {{ > dashside }}
+   {{ > dashkids }}
+  </div>
+ </div>
+</template>
+
+<template name="dashhead">
+     <button type="submit" class="btn btn-default logout-button">Logout</button>
+</template>
+
+<template name="dashside">
+ <div class="row">
+  <div class="col-xs-12">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h4 class="panel-title">{{currentUser.profile.name}}</h4>
+    </div>
+    <div class="panel-body">
+     <ul class="list-group">
+      <li class="list-group-item">Membership: {{ > dashmem }} </li>
+  	{{#if showmemForm}}
+  	 {{ > dashmmem }}
+  	{{/if}}
+      {{#if currentUser.profile.membership}}
+       <li class="list-group-item">League One: {{ > dashone }} </li>
+       <li class="list-group-item">League Two: {{ > dashtwo }} </li>
+       <li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
+      {{/if}}
+      <li class="list-group-item">{{> dashhead}}</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="dashkids">
+ <div class="row">
+  <div class="col-xs-12">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h4 class="panel-title">Youth Players</h4>
+    </div>
+    <div class="panel-body">
+     <ul class="list-group">
+      {{#if currentUser.profile.kids}}
+      <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+      {{else}}
+      <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+      {{/if}}
+     </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="dashmem">
+ {{#if currentUser.profile.membership}}
+  <b>Jan - Dec 2014 </b>
+  {{#if currentUser.profile.paid}}
+   <b>paid</b>
+  {{else}}
+   <b>payment pending</b>
+  {{/if}}
+ {{else}}
+  <button type="submit" class="btn btn-danger membership-button">Add 2014 Membership</button>
+ {{/if}}
+</template>
+
+<template name="dashone">
+</template>
+
+<template name="dashtwo">
+</template>
+
+<template name="dashfutsal">
+</template>
+
+
+<template name="dashmain">
+ <div class="row">
+  <div class="col-xs-12">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h4 class="panel-title">Athens Community Soccer - ({{currentUser.profile.name}})</h4>
+    </div>
+    <div class="panel-body">
+     <p><b>April 19th 2014</b></p>
+     <p>Athens Community Soccer Opening Day from 9am to 2pm. Opportunities to play and sign up.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</template>
+
+<template name="dashmmem">
+   <li class="list-group-item">
+    <form class="form-horizontal" role="form">
+     <div class="form-group">
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemname" placeholder="{{currentUser.profile.name}}">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemaddress" placeholder="Address">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemcity" placeholder="City">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemstate" placeholder="State">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemzip" placeholder="Zip">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemage" placeholder="Age">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemphone" placeholder="Phone Number">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemcontact" placeholder="Emergency Contact">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemconphone" placeholder="Emergency Contact Phone">
+      </div> 
+      <div class="col-xs-10"></div>
+      <div class="col-xs-10">
+       <input type="text" class="form-control" id="acsmemmedical" placeholder="Medical Conditions">
+      </div> 
+      <div class="col-xs-10"><small>&nbsp;</small></div>
+      <div class="col-xs-10">
+       <button type="submit" class="btn btn-default acsmemsubmit">Submit Membership</button>
+      </div> 
+     </div>
+    </form>
+   </li>
+</template>
