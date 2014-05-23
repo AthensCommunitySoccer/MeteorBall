@@ -1,7 +1,4 @@
 if (Meteor.isServer) {
-  Player = new Meteor.Collection("players");
-  Teams = new Meteor.Collection("teams");
-  Youth = new Meteor.Collection("youth");
 
   Meteor.startup(function () {
     // code to run on server at startup
