@@ -24,133 +24,133 @@
 </template>
 
 <template name="logout">
-		<button type="submit" class="btn btn-default logout-button">Logout</button>
+	<button type="submit" class="btn btn-default logout-button">Logout</button>
 </template>
 
 <template name="dashside">
-<div class="row">
-	<div class="col-xs-12">
-	<div class="panel panel-default">
-		<!-- <div class="panel-heading">
-		<h4 class="panel-title">{{currentUser.profile.name}}</h4>
-		{{> dashhead}}
-		</div> -->
-		<div class="panel-body">
-		<ul class="list-group">
-			<li class="list-group-item">{{ > dashmem }} </li>
-		{{#if showmemForm}}
-		<div class="logout-button">{{ > dashUpdateProfile }}</div>
-		{{/if}}
-			{{#if currentUser.profile.membership}}
-			<li class="list-group-item">League One: {{ > dashone }} </li>
-			<li class="list-group-item">League Two: {{ > dashtwo }} </li>
-			<li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
-			{{/if}}
-		</ul>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<!-- <div class="panel-heading">
+				<h4 class="panel-title">{{currentUser.profile.name}}</h4>
+				{{> dashhead}}
+			</div> -->
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">{{ > dashmem }} </li>
+					{{#if showmemForm}}
+					<div class="logout-button">{{ > dashUpdateProfile }}</div>
+					{{/if}}
+					{{#if currentUser.profile.membership}}
+					<li class="list-group-item">League One: {{ > dashone }} </li>
+					<li class="list-group-item">League Two: {{ > dashtwo }} </li>
+					<li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
+					{{/if}}
+				</ul>
+			</div>
 		</div>
-	</div>
 	</div>
 </div>
 </template>
 
 <template name="dashkids">
-<div class="row">
-	<div class="col-xs-12">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-		<h4 class="panel-title">Add Players</h4>
-		</div>
-		<div class="panel-body">
-		<ul class="list-group">
-				<li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
-				<li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
-		</ul>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">Add Players</h4>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
+						<li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-</div>
 </template>
 
 <template name="dashmem">
-{{#if currentUser.profile.membership}}
+	{{#if currentUser.profile.membership}}
 	<b>Jan - Dec 2014 </b>
 	{{#if currentUser.profile.paid}}
 	<b>paid</b>
 	{{else}}
 	<b>payment pending</b>
 	{{/if}}
-{{else}}
+	{{else}}
 	<button type="submit" class="btn btn-danger membership-button">Update Profile</button>
-{{/if}}
+	{{/if}}
 </template>
 
 
 <template name="dashUpdateProfile">
-   <li class="list-group-item">
-    <form class="form-horizontal" role="form">
-     <div class="form-group">
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilename" placeholder="{{currentUser.profile.name}}">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofileaddress" placeholder="Address">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilecity" placeholder="City">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilestate" placeholder="State">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilezip" placeholder="Zip">
-      </div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilebphone" placeholder="Phone Number">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10"><small>&nbsp;</small></div>
-      <div class="col-xs-10">
-       <button type="submit" class="btn btn-default acsprofilesubmit">Submit Profile</button>
-      </div>
-     </div>
-    </form>
-   </li>
+	<li class="list-group-item">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilename" placeholder="{{currentUser.profile.name}}">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofileaddress" placeholder="Address">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilecity" placeholder="City">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilestate" placeholder="State">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilezip" placeholder="Zip">
+				</div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilebphone" placeholder="Phone Number">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10"><small>&nbsp;</small></div>
+				<div class="col-xs-10">
+					<button type="submit" class="btn btn-default acsprofilesubmit">Submit Profile</button>
+				</div>
+			</div>
+		</form>
+	</li>
 </template>
 
 <template name="dashAddPlayer">
-   <li class="list-group-item">
-    <form class="form-horizontal" role="form">
-     <div class="form-group">
+	<li class="list-group-item">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
 
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerName" placeholder="{{currentUser.profile.name}}">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerDOB" placeholder="Date of Birth">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerContact" placeholder="Emergency Contact">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerPhone" placeholder="Emergency Contact Phone">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerMedical" placeholder="Medical Conditions">
-      </div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerName" placeholder="{{currentUser.profile.name}}">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerDOB" placeholder="Date of Birth">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerContact" placeholder="Emergency Contact">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerPhone" placeholder="Emergency Contact Phone">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerMedical" placeholder="Medical Conditions">
+				</div>
 
-      <div class="col-xs-10"><small>&nbsp;</small></div>
-      <div class="col-xs-10">
-       <button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>
-      </div>
-     </div>
-    </form>
-   </li>
+				<div class="col-xs-10"><small>&nbsp;</small></div>
+				<div class="col-xs-10">
+					<button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>
+				</div>
+			</div>
+		</form>
+	</li>
 </template>
