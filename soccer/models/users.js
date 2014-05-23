@@ -1,7 +1,7 @@
 if (Meteor.isServer) {
   Meteor.methods({
     updateUserProfile: function(profile) {
-      if (profile.name == null) {
+      if (profile.name == "" || profile.name == null) {
         profile.name = Meteor.user().profile.name
       }
       

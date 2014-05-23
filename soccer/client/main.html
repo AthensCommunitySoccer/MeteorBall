@@ -233,7 +233,7 @@
      <ul class="list-group">
       <li class="list-group-item">{{ > dashmem }} </li>
   	{{#if showmemForm}}
-  	 <div class="logout-button">{{ > dashmmem }}</div>
+  	 <div class="logout-button">{{ > dashUpdateProfile }}</div>
   	{{/if}}
       {{#if currentUser.profile.membership}}
        <li class="list-group-item">League One: {{ > dashone }} </li>
@@ -252,15 +252,12 @@
   <div class="col-xs-12">
    <div class="panel panel-default">
     <div class="panel-heading">
-     <h4 class="panel-title">Youth Players</h4>
+     <h4 class="panel-title">Add Players</h4>
     </div>
     <div class="panel-body">
      <ul class="list-group">
-      {{#if currentUser.profile.kids}}
-      <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
-      {{else}}
-      <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
-      {{/if}}
+        <li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
+        <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
      </ul>
     </div>
    </div>
@@ -305,56 +302,4 @@
    </div>
   </div>
  </div>
-</template>
-
-<template name="dashmmem">
-   <li class="list-group-item">
-    <form class="form-horizontal" role="form">
-     <div class="form-group">
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemname" placeholder="{{currentUser.profile.name}}">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemaddress" placeholder="Address">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemcity" placeholder="City">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemstate" placeholder="State">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemzip" placeholder="Zip">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemage" placeholder="Age">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemphone" placeholder="Phone Number">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmememcontact" placeholder="Emergency Contact">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmememconphone" placeholder="Emergency Contact Phone">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsmemmedical" placeholder="Medical Conditions">
-      </div>
-      <div class="col-xs-10"><small>&nbsp;</small></div>
-      <div class="col-xs-10">
-       <button type="submit" class="btn btn-default acsmemsubmit">Submit Membership</button>
-      </div>
-     </div>
-    </form>
-   </li>
 </template>

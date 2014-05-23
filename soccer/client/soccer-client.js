@@ -10,21 +10,21 @@ if (Meteor.isClient) {
     Session.set("acsLoginFAIL", false);
   });
 
-  Template.dashmmem.events({
+  Template.dashUpdateProfile.events({
      'click button.btn.btn-default.acsprofilesubmit' : function(event) {
-        var acsprofile = new Object;
+        var profile = new Object;
 
-        acsprofile.name = $("#acsprofilename").val();
-        acsprofile.street = $("#acsprofileaddress").val();
-        acsprofile.city = $("#acsprofilecity").val();
-        acsprofile.state = $("#acsprofilestate").val();
-        acsprofile.zip = $("#acsprofilezip").val();
-        acsprofile.dob = $("#acsprofiledob").val();
-        acsprofile.phone = $("#acsprofilephone").val();
+        profile.name = $("#acsprofilename").val();
+        profile.street = $("#acsprofileaddress").val();
+        profile.city = $("#acsprofilecity").val();
+        profile.state = $("#acsprofilestate").val();
+        profile.zip = $("#acsprofilezip").val();
+        profile.dob = $("#acsprofiledob").val();
+        profile.phone = $("#acsprofilephone").val();
 
-        acsprofile.membership = true;
+        profile.membership = true;
 
-        Meteor.call("updateUserProfile", acsprofile, function(error, userId) {
+        Meteor.call("updateUserProfile", profile, function(error, userId) {
         	console.log('Successfully updated with id ' + userId);
         });
         
@@ -164,5 +164,12 @@ if (Meteor.isClient) {
   Template.newuser.showAccountOK = function() {
         return Session.get("acsAccountOK");
   };
+  
+  Template.dashAddPlayer.showAdultPlayer = function() {
+    return Session.get("acsAdultPlayer");
+  }
 
+  Template.dashAddPlayer.showYouthPlayer = function() {
+    return Session.get("acsYouthPlayer");
+  }
 }
