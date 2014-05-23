@@ -11,41 +11,36 @@ if (Meteor.isClient) {
   });
 
   Template.dashmmem.events({
-     'click button.btn.btn-default.acsmemsubmit' : function(event) {
-	var acsprofile = new Object;
+     'click button.btn.btn-default.acsprofilesubmit' : function(event) {
+        var acsprofile = new Object;
 
-	acsprofile.name = document.getElementById("acsmemname").value;
-	acsprofile.street = document.getElementById("acsmemaddress").value;
-	acsprofile.city = document.getElementById("acsmemcity").value;
-	acsprofile.state = document.getElementById("acsmemstate").value;
-	acsprofile.zip = document.getElementById("acsmemzip").value;
-	acsprofile.age = document.getElementById("acsmemage").value;
-	acsprofile.phone = document.getElementById("acsmemphone").value;
-	acsprofile.emcontact = document.getElementById("acsmememcontact").value;
-	acsprofile.emphone = document.getElementById("acsmememconphone").value;
-	acsprofile.medical = document.getElementById("acsmemmedical").value;
-	acsprofile.membership = true;
+        acsprofile.name = $("#acsprofilename").val();
+        acsprofile.street = $("#acsprofileaddress").val();
+        acsprofile.city = $("#acsprofilecity").val();
+        acsprofile.state = $("#acsprofilestate").val();
+        acsprofile.zip = $("#acsprofilezip").val();
+        acsprofile.dob = $("#acsprofiledob").val();
+        acsprofile.phone = $("#acsprofilephone").val();
 
-	console.log(acsprofile.emcontact);
+        acsprofile.membership = true;
 
-	Meteor.call("acsProfileFn",acsprofile,function(error, sresID) {
-		console.log('Successfully updated with id '+sredID);
-	});
-
-	return;
-
+        Meteor.call("updateUserProfile", acsprofile, function(error, userId) {
+        	console.log('Successfully updated with id ' + userId);
+        });
+        
+        return;
       }
   });
 
   Template.dashmem.events({
      'click button.btn.btn-danger.membership-button' : function(event) {
 	console.log('button clicked');
-	Session.set("acsmemform",true);
+	Session.set("acsprofileform",true);
       }
   });
 
   Template.dashside.showmemForm = function() {
-        return Session.get("acsmemform");
+        return Session.get("acsprofileform");
   };
 
 
@@ -105,8 +100,7 @@ if (Meteor.isClient) {
   Template.newuser.events({
     'click button.btn.btn-default.acssignupsubmit' : function(event) {
         event.preventDefault();
-	var acsnew = new Object();
-	var acsprofile = new Object();
+  
 	var trimInput = function(val) {
 		return val.replace(/^\s*|\s*$/g,"");
 	}
@@ -114,39 +108,35 @@ if (Meteor.isClient) {
 		return val.length >= 6 ? true : false;
 	}
 
-	acsnew.name = document.getElementById("acssignup").value;
-	acsnew.email = document.getElementById("acssignupemail").value;
-	acsnew.pass = document.getElementById("acssignuppass").value;
+	var profile = new Object();
+  
+	profile.name = $("#acssignup").val();
+	profile.email = trimInput($("#acssignupemail").val());
+  profile.pass =  $("#acssignuppass").val();
 
-	acsnew.email = trimInput(acsnew.email);
-
-	acsprofile.name = acsnew.name;
-	acsprofile.email = acsnew.email;
-	acsprofile.street = "";
-
-	if (EMAIL_REGEX.test(acsnew.email)) {
-		Session.set("showBadEmail",false);
-		if (isValidPassword(acsnew.pass)) {
-		    Session.set("showBadPass",false);
-		    Accounts.createUser({email: acsnew.email, password: acsnew.pass, profile: acsprofile}, function(err) {
-		    	if (err) {
-			    Session.set("acsAccountFAIL", true);
-			    Session.set("acsAccountOK", false);
+	if (EMAIL_REGEX.test(profile.email)) {
+		Session.set("showBadEmail", false);
+		if (isValidPassword(profile.pass)) {
+		    Session.set("showBadPass", false);
+        
+        Accounts.createUser({username: profile.email, email: profile.email, password: profile.pass, profile: { name: profile.name }}, function(error, result){          
+		    	if (error) {
+			      Session.set("acsAccountFAIL", true);
+            Session.set("acsAccountOK", false);
 		    	} else {
-			    Session.set("acsAccountOK", true);
-			    Session.set("acsAccountFAIL", false);
-			    document.getElementById("acssignup").value = "";
-			    document.getElementById("acssignemail").value = "";
-			    document.getElementById("acssignpass").value = "";
-		        }
-		    });
+  			    Session.set("acsAccountOK", true);
+  			    Session.set("acsAccountFAIL", false);
+  			    $("#acssignup").val("");
+  			    $("#acssignemail").val("");
+  			    $("#acssignpass").val("");
+		      }
+        });
 		} else {
-		    Session.set("showBadPass", true);
-		    Session.set("acsAccountFAIL", false);
-		    Session.set("acsAccountOK", false);
+	    Session.set("showBadPass", true);
+	    Session.set("acsAccountFAIL", false);
+	    Session.set("acsAccountOK", false);
 		}
 	} else {
-		console.log('bad email');
 		Session.set("showBadEmail",true);
 		Session.set("showBadPass",false);
 		Session.set("acsAccountFAIL", false);
