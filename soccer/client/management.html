@@ -1,4 +1,9 @@
-<template name="account-management">
+<template name="management">
+	<div class="row">
+		<div id="username" class="user-info">{{currentUser.profile.name}}</div>
+	</div>
+
+	{{ #if showManagementDrawer }}
 	<div class="row">
 		<div id="management-actions" class="col-xs-4">
 			<h2>Manage Account</h2>
@@ -9,12 +14,45 @@
 				<li>Some Cool Stuff</li>
 			</ul>
 		</div>
-		<div id="user-info">
-			<h2>{{currentUser.profile.name}}</h2>
-			<a id="logout">Logout</a>
+		<div class="user-info">
+			<div class="panel-heading">
+				{{> logout}}
+			</div>
 		</div>
 	</div>
+	{{ /if }}
 </template>
+
+<template name="logout">
+		<button type="submit" class="btn btn-default logout-button">Logout</button>
+</template>
+
+<template name="dashside">
+<div class="row">
+	<div class="col-xs-12">
+	<div class="panel panel-default">
+		<!-- <div class="panel-heading">
+		<h4 class="panel-title">{{currentUser.profile.name}}</h4>
+		{{> dashhead}}
+		</div> -->
+		<div class="panel-body">
+		<ul class="list-group">
+			<li class="list-group-item">{{ > dashmem }} </li>
+		{{#if showmemForm}}
+		<div class="logout-button">{{ > dashUpdateProfile }}</div>
+		{{/if}}
+			{{#if currentUser.profile.membership}}
+			<li class="list-group-item">League One: {{ > dashone }} </li>
+			<li class="list-group-item">League Two: {{ > dashtwo }} </li>
+			<li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
+			{{/if}}
+		</ul>
+		</div>
+	</div>
+	</div>
+</div>
+</template>
+
 
 <template name="dashUpdateProfile">
    <li class="list-group-item">
@@ -56,7 +94,7 @@
    <li class="list-group-item">
     <form class="form-horizontal" role="form">
      <div class="form-group">
-       
+
       <div class="col-xs-10">
        <input type="text" class="form-control" id="acsPlayerName" placeholder="{{currentUser.profile.name}}">
       </div>
@@ -76,7 +114,7 @@
       <div class="col-xs-10">
        <input type="text" class="form-control" id="acsPlayerMedical" placeholder="Medical Conditions">
       </div>
-      
+
       <div class="col-xs-10"><small>&nbsp;</small></div>
       <div class="col-xs-10">
        <button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>

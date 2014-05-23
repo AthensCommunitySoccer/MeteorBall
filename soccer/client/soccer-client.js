@@ -27,7 +27,7 @@ if (Meteor.isClient) {
         Meteor.call("updateUserProfile", profile, function(error, userId) {
         	console.log('Successfully updated with id ' + userId);
         });
-        
+
         return;
       }
   });
@@ -47,9 +47,9 @@ if (Meteor.isClient) {
   Template.dashhead.events({
      'click button.btn.btn-default.logout-button' : function(event) {
         event.preventDefault();
-        Meteor.logout(function(err) {   
+        Meteor.logout(function(err) {
           if (err) {
-          } 
+          }
         });
       }
   });
@@ -100,7 +100,7 @@ if (Meteor.isClient) {
   Template.newuser.events({
     'click button.btn.btn-default.acssignupsubmit' : function(event) {
         event.preventDefault();
-  
+
 	var trimInput = function(val) {
 		return val.replace(/^\s*|\s*$/g,"");
 	}
@@ -109,7 +109,7 @@ if (Meteor.isClient) {
 	}
 
 	var profile = new Object();
-  
+
 	profile.name = $("#acssignup").val();
 	profile.email = trimInput($("#acssignupemail").val());
   profile.pass =  $("#acssignuppass").val();
@@ -118,8 +118,8 @@ if (Meteor.isClient) {
 		Session.set("showBadEmail", false);
 		if (isValidPassword(profile.pass)) {
 		    Session.set("showBadPass", false);
-        
-        Accounts.createUser({username: profile.email, email: profile.email, password: profile.pass, profile: { name: profile.name }}, function(error, result){          
+
+        Accounts.createUser({username: profile.email, email: profile.email, password: profile.pass, profile: { name: profile.name }}, function(error, result){
 		    	if (error) {
 			      Session.set("acsAccountFAIL", true);
             Session.set("acsAccountOK", false);
@@ -164,7 +164,7 @@ if (Meteor.isClient) {
   Template.newuser.showAccountOK = function() {
         return Session.get("acsAccountOK");
   };
-  
+
   Template.dashAddPlayer.showAdultPlayer = function() {
     return Session.get("acsAdultPlayer");
   }

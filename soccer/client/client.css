@@ -1,5 +1,9 @@
 .logout-button {
   float: right;
   position: relative;
-  top: -25px;
+}
+
+.user-info {
+  float: right;
+  position: relative;
 }

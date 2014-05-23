@@ -189,35 +189,6 @@
  </div>
 </template>
 
-<template name="dashhead">
-     <button type="submit" class="btn btn-default logout-button">Logout</button>
-</template>
-
-<template name="dashside">
- <div class="row">
-  <div class="col-xs-12">
-   <div class="panel panel-default">
-    <div class="panel-heading">
-     <h4 class="panel-title">{{currentUser.profile.name}}</h4>
-     {{> dashhead}}
-    </div>
-    <div class="panel-body">
-     <ul class="list-group">
-      <li class="list-group-item">{{ > dashmem }} </li>
-  	{{#if showmemForm}}
-  	 <div class="logout-button">{{ > dashUpdateProfile }}</div>
-  	{{/if}}
-      {{#if currentUser.profile.membership}}
-       <li class="list-group-item">League One: {{ > dashone }} </li>
-       <li class="list-group-item">League Two: {{ > dashtwo }} </li>
-       <li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
-      {{/if}}
-     </ul>
-    </div>
-   </div>
-  </div>
- </div>
-</template>
 
 <template name="dashkids">
  <div class="row">
