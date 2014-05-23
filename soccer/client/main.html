@@ -10,6 +10,8 @@
 <body>
  <div class="container-fluid">
   {{ > header }}
+  {{ > management }}
+  {{ > alert }}
   {{ > main }}
  </div>
  <script src="/lib/jquery/jquery.min.js"></script>
@@ -77,28 +79,7 @@
  {{ > msoccerinfo }}
 </template>
 
-<template name="sidebar">
- <div class="row">
-  <div class="col-xs-12">
-   <p>&nbsp;</p>
-  </div>
- </div>
- <div class="row">
-  <div class="col-xs-12">
-   {{ > existing }}
-  </div>
- </div>
- <div class="row">
-  <div class="col-xs-12">
-   <p>&nbsp;</p>
-  </div>
- </div>
- <div class="row">
-  <div class="col-xs-12">
-   {{ > newuser }}
-  </div>
- </div>
-</template>
+
 
 <template name="newuser">
 <div class="panel panel-default">
@@ -169,16 +150,7 @@
   </form>
 </template>
 
-<template name="footer">
- <div id="footer">
-  <div class="container-fluid">
-   <div class="col-xs-10 col-xs-offset-1"><small>&nbsp;</small></div>
-   <div class="col-xs-10 col-xs-offset-1">
-    Copyright &copy; 2013-2014 Athens Community Soccer
-   </div>
-  </div>
- </div>
-</template>
+
 
 <template name="badEmail">
         <p class="text-danger">Please enter a valid Email address...</p>
