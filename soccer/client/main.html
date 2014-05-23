@@ -182,43 +182,11 @@
   <div class="col-xs-6">
    {{ > dashmain }}
   </div>
-  <div class="col-xs-5 col-xs-offset-1">
+  <!-- <div class="col-xs-5 col-xs-offset-1">
    {{ > dashside }}
    {{ > dashkids }}
-  </div>
+  </div> -->
  </div>
-</template>
-
-
-<template name="dashkids">
- <div class="row">
-  <div class="col-xs-12">
-   <div class="panel panel-default">
-    <div class="panel-heading">
-     <h4 class="panel-title">Add Players</h4>
-    </div>
-    <div class="panel-body">
-     <ul class="list-group">
-        <li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
-        <li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
-     </ul>
-    </div>
-   </div>
-  </div>
- </div>
-</template>
-
-<template name="dashmem">
- {{#if currentUser.profile.membership}}
-  <b>Jan - Dec 2014 </b>
-  {{#if currentUser.profile.paid}}
-   <b>paid</b>
-  {{else}}
-   <b>payment pending</b>
-  {{/if}}
- {{else}}
-  <button type="submit" class="btn btn-danger membership-button">Update Profile</button>
- {{/if}}
 </template>
 
 <template name="dashone">

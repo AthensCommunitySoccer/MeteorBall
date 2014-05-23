@@ -1,26 +1,26 @@
-<template name="management">
-	<div class="row">
-		<div id="username" class="user-info">{{currentUser.profile.name}}</div>
-	</div>
+<!-- Account/Player Management Dashboard -->
 
-	{{ #if showManagementDrawer }}
-	<div class="row">
-		<div id="management-actions" class="col-xs-4">
-			<h2>Manage Account</h2>
-			<ul>
-				<li>Join A League</li>
-				<li>Add A Player</li>
-				<li>Do A Backflip</li>
-				<li>Some Cool Stuff</li>
-			</ul>
+<template name="management">
+	<div class="row management-drawer">
+		<div class="row">
+			<a id="username" class="user-info">{{currentUser.profile.name}}</a>
 		</div>
-		<div class="user-info">
-			<div class="panel-heading">
-				{{> logout}}
+
+		{{ #if showManagementDrawer }}
+		<div class="row">
+			<div id="management-actions" class="col-xs-4">
+				<h2>Manage Account</h2>
+				{{ > dashside }}
+				{{ > dashkids }}
+			</div>
+			<div class="user-info">
+				<div class="panel-heading">
+					{{> logout}}
+				</div>
 			</div>
 		</div>
+		{{ /if }}
 	</div>
-	{{ /if }}
 </template>
 
 <template name="logout">
@@ -51,6 +51,37 @@
 	</div>
 	</div>
 </div>
+</template>
+
+<template name="dashkids">
+<div class="row">
+	<div class="col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h4 class="panel-title">Add Players</h4>
+		</div>
+		<div class="panel-body">
+		<ul class="list-group">
+				<li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
+				<li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+		</ul>
+		</div>
+	</div>
+	</div>
+</div>
+</template>
+
+<template name="dashmem">
+{{#if currentUser.profile.membership}}
+	<b>Jan - Dec 2014 </b>
+	{{#if currentUser.profile.paid}}
+	<b>paid</b>
+	{{else}}
+	<b>payment pending</b>
+	{{/if}}
+{{else}}
+	<button type="submit" class="btn btn-danger membership-button">Update Profile</button>
+{{/if}}
 </template>
 
 

@@ -3,7 +3,13 @@
   position: relative;
 }
 
-.user-info {
+#username {
   float: right;
   position: relative;
+  align: right;
+  display: auto;
+}
+
+.management-drawer {
+  background-color: lightgrey;
 }
