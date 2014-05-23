@@ -1,4 +1,7 @@
 <template name="sidebar">
+  {{#if currentUser}}
+    <!-- logged in -->
+  {{else}}
   <div class="row">
     <div class="col-xs-12">
       <p>&nbsp;</p>
@@ -19,4 +22,5 @@
       {{ > newuser }}
     </div>
   </div>
+  {{/if}}
 </template>
