@@ -1,3 +1,21 @@
+<template name="account-management">
+	<div class="row">
+		<div id="management-actions" class="col-xs-4">
+			<h2>Manage Account</h2>
+			<ul>
+				<li>Join A League</li>
+				<li>Add A Player</li>
+				<li>Do A Backflip</li>
+				<li>Some Cool Stuff</li>
+			</ul>
+		</div>
+		<div id="user-info">
+			<h2>{{currentUser.profile.name}}</h2>
+			<a id="logout">Logout</a>
+		</div>
+	</div>
+</template>
+
 <template name="dashmmem">
    <li class="list-group-item">
     <form class="form-horizontal" role="form">
