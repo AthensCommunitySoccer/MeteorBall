@@ -8,39 +8,39 @@
 </head>
 
 <body>
- <div class="container-fluid">
-  {{ > header }}
-  {{ > management }}
-  {{ > alert }}
-  {{ > main }}
- </div>
-  {{ > footer }}
- <script src="/lib/jquery/jquery.min.js"></script>
- <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+  <div class="container-fluid">
+    {{ > header }}
+    {{ > management }}
+    {{ > alert }}
+    {{ > main }}
+  </div>
+  <!-- {{ > footer }} -->
+  <script src="/lib/jquery/jquery.min.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 
 <template name="main">
- {{#if loggingIn}}
-
- {{else}}
-  {{#if currentUser}}
-   {{ > dashboard }}
+  {{#if loggingIn}}
+  <!-- logging in -->
   {{else}}
-   {{ > mainout }}
+  {{ > content }}
   {{/if}}
- {{/if}}
 </template>
 
-<template name="mainout">
- <div class="row">
-  <div class="col-xs-5 col-xs-offset-1">
-   {{ > welcome }}
+<template name="content">
+  <div class="row">
+    <div class="col-xs-5 col-xs-offset-1">
+      {{#if currentUser}}
+      {{ > feedArea }}
+      {{else}}
+      {{ > welcome }}
+      {{/if}}
+    </div>
+    <div class="col-xs-5 col-xs-offset-1">
+      {{ > sidebar }}
+    </div>
   </div>
-  <div class="col-xs-5 col-xs-offset-1">
-   {{ > sidebar }}
-  </div>
- </div>
 </template>
 
 
@@ -48,111 +48,111 @@
 
 
 <template name="newuser">
-<div class="panel panel-default">
- <div class="panel-heading">
-  <h4 class="panel-title">New Player? Sign up</h4>
- </div>
- <div class="panel-body">
-  <form class="form-horizontal" role="form">
-   <div class="form-group">
-    <div class="col-xs-10">
-     <input type="text" class="form-control" id="acssignup" placeholder="Full Name">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">New Player? Sign up</h4>
     </div>
-    <div class="col-xs-10"></div>
-    <div class="col-xs-10">
-      <input type="email" class="form-control" id="acssignupemail" placeholder="Email">
+    <div class="panel-body">
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-xs-10">
+            <input type="text" class="form-control" id="acssignup" placeholder="Full Name">
+          </div>
+          <div class="col-xs-10"></div>
+          <div class="col-xs-10">
+            <input type="email" class="form-control" id="acssignupemail" placeholder="Email">
+          </div>
+          <div class="col-xs-10"></div>
+          <div class="col-xs-10">
+            <input type="password" class="form-control" id="acssignuppass" placeholder="Password">
+          </div>
+          <div class="col-xs-10"><small>&nbsp;</small></div>
+          <div class="col-xs-10">
+            <button type="submit" class="btn btn-default acssignupsubmit">Sign up for Soccer</button>
+          </div>
+          <div class="col-xs-10">
+            {{#if showBadEmail}}
+            {{ > badEmail }}
+            {{/if}}
+            {{#if showBadPass}}
+            {{ > badPass }}
+            {{/if}}
+            {{#if showAccountFail}}
+            {{ > accountFail }}
+            {{/if}}
+            {{#if showAccountOK}}
+            {{ > accountOK }}
+            {{/if}}
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="col-xs-10"></div>
-    <div class="col-xs-10">
-     <input type="password" class="form-control" id="acssignuppass" placeholder="Password">
-    </div>
-    <div class="col-xs-10"><small>&nbsp;</small></div>
-    <div class="col-xs-10">
-     <button type="submit" class="btn btn-default acssignupsubmit">Sign up for Soccer</button>
-    </div>
-    <div class="col-xs-10">
-     {{#if showBadEmail}}
-      {{ > badEmail }}
-     {{/if}}
-     {{#if showBadPass}}
-      {{ > badPass }}
-     {{/if}}
-     {{#if showAccountFail}}
-      {{ > accountFail }}
-     {{/if}}
-     {{#if showAccountOK}}
-      {{ > accountOK }}
-     {{/if}}
-    </div>
-   </div>
-  </form>
- </div>
-</div>
+  </div>
 </template>
 
 <template name="existing">
   <form class="form-horizontal" role="form" id="login-form">
-   <div class="form-group">
-    <div class="col-xs-10">
-     <input type="email" class="form-control" id="login-email" placeholder="Email">
+    <div class="form-group">
+      <div class="col-xs-10">
+        <input type="email" class="form-control" id="login-email" placeholder="Email">
+      </div>
+      <div class="col-xs-10 col-xs-offset-1"></div>
+      <div class="col-xs-10">
+        <input type="password" class="form-control" id="login-password" placeholder="Password">
+      </div>
+      <div class="col-xs-10 col-xs-offset-1"><small>&nbsp;</small></div>
+      <div class="col-xs-10">
+        <button type="submit" class="btn btn-default login-button">Sign in</button>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1">
+        {{#if loginBadEmail}}
+        {{ > badEmail }}
+        {{/if}}
+        {{#if attemptLoginFAIL}}
+        {{ > attemptFAIL }}
+        {{/if}}
+      </div>
     </div>
-    <div class="col-xs-10 col-xs-offset-1"></div>
-    <div class="col-xs-10">
-     <input type="password" class="form-control" id="login-password" placeholder="Password">
-    </div>
-    <div class="col-xs-10 col-xs-offset-1"><small>&nbsp;</small></div>
-    <div class="col-xs-10">
-     <button type="submit" class="btn btn-default login-button">Sign in</button>
-    </div>
-    <div class="col-xs-10 col-xs-offset-1">
-	{{#if loginBadEmail}}
-	  {{ > badEmail }}
-	{{/if}}
-	{{#if attemptLoginFAIL}}
-	  {{ > attemptFAIL }}
-	{{/if}}
-    </div>
-   </div>
   </form>
 </template>
 
 
 
 <template name="badEmail">
-        <p class="text-danger">Please enter a valid Email address...</p>
+  <p class="text-danger">Please enter a valid Email address...</p>
 </template>
 
 <template name="badPass">
-        <p class="text-danger">Password must be at least 6 characters long...</p>
+  <p class="text-danger">Password must be at least 6 characters long...</p>
 </template>
 
 <template name="accountFAIL">
-        <p class="text-danger">Account creation failed. Already signed up?</p>
+  <p class="text-danger">Account creation failed. Already signed up?</p>
 </template>
 
 <template name="attemptFAIL">
-        <p class="text-danger">Invalid login.</p>
+  <p class="text-danger">Invalid login.</p>
 </template>
 
 <template name="accountOK">
-        <p class="text-success">Account created. Please sign in.</p>
+  <p class="text-success">Account created. Please sign in.</p>
 </template>
 
-<template name="feed-area">
- <div class="row">
-  <div class="col-xs-12">
-   &nbsp;
+<template name="feedArea">
+  <div class="row">
+    <div class="col-xs-12">
+      &nbsp;
+    </div>
   </div>
- </div>
- <div class="row">
-  <div class="col-xs-6">
-   {{ > feed }}
-  </div>
-  <!-- <div class="col-xs-5 col-xs-offset-1">
-   {{ > dashside }}
-   {{ > dashkids }}
+  <div class="row">
+    <div class="col-xs-6">
+      {{ > feed }}
+    </div>
+    <!-- <div class="col-xs-5 col-xs-offset-1">
+    {{ > dashside }}
+    {{ > dashkids }}
   </div> -->
- </div>
+</div>
 </template>
 
 <template name="dashone">

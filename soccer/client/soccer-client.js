@@ -43,18 +43,6 @@ if (Meteor.isClient) {
         return Session.get("acsprofileform");
   };
 
-
-  Template.dashhead.events({
-     'click button.btn.btn-default.logout-button' : function(event) {
-        event.preventDefault();
-        Meteor.logout(function(err) {
-          if (err) {
-          }
-        });
-      }
-  });
-
-
   Template.existing.events({
     'click button.btn.btn-default.login-button' : function(event) {
         event.preventDefault();
