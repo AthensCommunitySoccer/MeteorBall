@@ -10,7 +10,7 @@ if (Meteor.isClient) {
     Session.set("acsLoginFAIL", false);
   });
 
-  Template.dashUpdateProfile.events({
+  Template.updateProfileForm.events({
     'click button.btn.btn-default.acsprofilesubmit' : function(event) {
       var profile = new Object;
 
@@ -32,18 +32,18 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.dashmem.events({
+  Template.userMemerbship.events({
     'click button.btn.btn-danger.membership-button' : function(event) {
       console.log('button clicked');
       Session.set("acsprofileform",true);
     }
   });
 
-  Template.dashside.showmemForm = function() {
+  Template.userProfilePanel.showmemForm = function() {
     return Session.get("acsprofileform");
   };
 
-  Template.existing.events({
+  Template.userSigninForm.events({
     'click button.btn.btn-default.login-button' : function(event) {
       event.preventDefault();
       acslogin = new Object();
@@ -77,15 +77,15 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.existing.loginBadEmail = function() {
+  Template.userSigninForm.loginBadEmail = function() {
     return Session.get("loginBadEmail");
   };
 
-  Template.existing.attemptLoginFAIL = function() {
+  Template.userSigninForm.attemptLoginFAIL = function() {
     return Session.get("acsLoginFAIL");
   };
 
-  Template.newuser.events({
+  Template.newUserSignUp.events({
     'click button.btn.btn-default.acssignupsubmit' : function(event) {
       event.preventDefault();
 
@@ -133,31 +133,24 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.newuser.showBadEmail = function() {
+  Template.newUserSignUp.showBadEmail = function() {
     return Session.get("showBadEmail");
   };
 
-  Template.newuser.showBadPass = function() {
+  Template.newUserSignUp.showBadPass = function() {
     return Session.get("showBadPass");
   };
 
-  Template.newuser.showAccountFail = function() {
+  Template.newUserSignUp.showAccountFail = function() {
     return Session.get("acsAccountFAIL");
   };
 
-  Template.newuser.showAccountOK = function() {
+  Template.newUserSignUp.showAccountOK = function() {
     return Session.get("acsAccountOK");
   };
 
-  Template.newuser.showAccountOK = function() {
+  Template.newUserSignUp.showAccountOK = function() {
     return Session.get("acsAccountOK");
   };
 
-  Template.dashAddPlayer.showAdultPlayer = function() {
-    return Session.get("acsAdultPlayer");
-  }
-
-  Template.dashAddPlayer.showYouthPlayer = function() {
-    return Session.get("acsYouthPlayer");
-  }
 }
