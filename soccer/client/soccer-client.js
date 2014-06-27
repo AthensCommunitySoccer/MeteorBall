@@ -1,6 +1,8 @@
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 if (Meteor.isClient) {
+  Meteor.subscribe("myPlayers");
+
   Meteor.startup(function () {
     Session.set("acsAccountOK", false);
     Session.set("acsAccountFAIL", false);
@@ -10,30 +12,8 @@ if (Meteor.isClient) {
     Session.set("acsLoginFAIL", false);
   });
 
-  Template.updateProfileForm.events({
-    'click button.btn.btn-default.acsprofilesubmit' : function(event) {
-      var profile = new Object;
-
-      profile.name = $("#acsprofilename").val();
-      profile.street = $("#acsprofileaddress").val();
-      profile.city = $("#acsprofilecity").val();
-      profile.state = $("#acsprofilestate").val();
-      profile.zip = $("#acsprofilezip").val();
-      profile.dob = $("#acsprofiledob").val();
-      profile.phone = $("#acsprofilephone").val();
-
-      profile.membership = true;
-
-      Meteor.call("updateUserProfile", profile, function(error, userId) {
-        console.log('Successfully updated with id ' + userId);
-      });
-
-      return;
-    }
-  });
-
-  Template.userMemerbship.events({
-    'click button.btn.btn-danger.membership-button' : function(event) {
+  Template.userMembership.events({
+    'click button.updateProfileButton' : function(event) {
       console.log('button clicked');
       Session.set("acsprofileform",true);
     }
@@ -77,6 +57,7 @@ if (Meteor.isClient) {
     }
   });
 
+
   Template.userSigninForm.loginBadEmail = function() {
     return Session.get("loginBadEmail");
   };
@@ -86,7 +67,7 @@ if (Meteor.isClient) {
   };
 
   Template.newUserSignUp.events({
-    'click button.btn.btn-default.acssignupsubmit' : function(event) {
+    'click button.acssignupsubmit' : function(event) {
       event.preventDefault();
 
       var trimInput = function(val) {
