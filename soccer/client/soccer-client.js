@@ -153,4 +153,23 @@ if (Meteor.isClient) {
     return Session.get("acsAccountOK");
   };
 
+  Template.userProfilePanel.showCreateTeam = function() {
+    return Session.get("acsCreateTeam");
+  };
+
+
+  Template.leagueRequest.events ({
+    'click button.btn.btn-default.acssubmitteam' : function(event) {
+      console.log('submit button clicked');
+      Session.set("acsCreateTeam",false);
+    }
+    });
+
+  Template.addTeam.events ({
+    'click button.btn.btn-default.acsaddteam' : function(event) {
+      console.log('new button clicked');
+      Session.set("acsCreateTeam",true);
+    }
+  });
+
 }
