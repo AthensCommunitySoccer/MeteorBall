@@ -1,5 +1,9 @@
-.logout-button {
+/*.logout-button {
   float: right;
   position: relative;
-  top: -25px;
+}*/
+
+#management-drawer {
+  background-color: lightgrey;
+  background-origin: border-box;
 }

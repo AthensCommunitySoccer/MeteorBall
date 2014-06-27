@@ -1,87 +1,205 @@
-<template name="account-management">
+<!-- Account/Player Management Dashboard -->
+
+<template name="management">
 	<div class="row">
-		<div id="management-actions" class="col-xs-4">
-			<h2>Manage Account</h2>
-			<ul>
-				<li>Join A League</li>
-				<li>Add A Player</li>
-				<li>Do A Backflip</li>
-				<li>Some Cool Stuff</li>
-			</ul>
-		</div>
-		<div id="user-info">
-			<h2>{{currentUser.profile.name}}</h2>
-			<a id="logout">Logout</a>
+		<div class="col-xs-12" id="management-drawer">
+			<div class="row">
+				<div class="col-xs-6 col-sm-5">
+					{{ #if showManagementDrawer }}
+					<h3 class=""><small>Manage Account</small></h3>
+					{{ /if }}
+				</div>
+				<div class="col-xs-6 col-sm-5 col-sm-offset-2 text-right">
+					<a id="username">{{currentUser.profile.name}} <span class="caret"></span></a>
+				</div>
+			</div>
+
+			{{ #if showManagementDrawer }}
+			<div class="row">
+				<div class="col-xs-6 col-sm-5" id="management-actions" >
+					{{ > userProfilePanel }}
+					{{ > addPlayerPanel }}
+				</div>
+				<div class="user-info col-xs-6 col-sm-5 col-sm-offset-2">
+					{{> logout}}
+				</div>
+			</div>
+			{{ /if }}
 		</div>
 	</div>
 </template>
 
-<template name="dashUpdateProfile">
-   <li class="list-group-item">
-    <form class="form-horizontal" role="form">
-     <div class="form-group">
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilename" placeholder="{{currentUser.profile.name}}">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofileaddress" placeholder="Address">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilecity" placeholder="City">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilestate" placeholder="State">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilezip" placeholder="Zip">
-      </div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsprofilebphone" placeholder="Phone Number">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10"><small>&nbsp;</small></div>
-      <div class="col-xs-10">
-       <button type="submit" class="btn btn-default acsprofilesubmit">Submit Profile</button>
-      </div>
-     </div>
-    </form>
-   </li>
+<template name="logout">
+	<button type="submit" class="btn btn-default logout-button pull-right">Logout</button>
 </template>
 
-<template name="dashAddPlayer">
-   <li class="list-group-item">
-    <form class="form-horizontal" role="form">
-     <div class="form-group">
-       
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerName" placeholder="{{currentUser.profile.name}}">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerDOB" placeholder="Date of Birth">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerContact" placeholder="Emergency Contact">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerPhone" placeholder="Emergency Contact Phone">
-      </div>
-      <div class="col-xs-10"></div>
-      <div class="col-xs-10">
-       <input type="text" class="form-control" id="acsPlayerMedical" placeholder="Medical Conditions">
-      </div>
-      
-      <div class="col-xs-10"><small>&nbsp;</small></div>
-      <div class="col-xs-10">
-       <button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>
-      </div>
-     </div>
-    </form>
-   </li>
+<template name="userProfilePanel">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<!-- <div class="panel-heading">
+				<h4 class="panel-title">{{currentUser.profile.name}}</h4>
+				{{> dashhead}}
+			</div> -->
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">{{ > userMemerbship }} </li>
+					{{#if showmemForm}}
+					<div class="list-group-item">{{ > updateProfileForm }}</div>
+					{{/if}}
+					{{#if currentUser.profile.membership}}
+					<li class="list-group-item">League One: {{ > leagueOne }} </li>
+					<li class="list-group-item">League Two: {{ > leagueTwo }} </li>
+					<li class="list-group-item">Futsal: {{ > leagueFutsal }} </li>
+					<li class="list-group-item">Create a team: {{ > addTeam}} </li>
+					{{/if}}
+					{{#if showCreateTeam}}
+							<li class="list-group-item">Team Name:{{ > newTeamName}} </li>
+							<li class="list-group-item">Requested League:{{ > leagueRequest}} </li>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<template name="addPlayerPanel">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">Add Players</h4>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
+						<li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="userMemerbship">
+	{{#if currentUser.profile.membership}}
+	<b>Jan - Dec 2014 </b>
+	{{#if currentUser.profile.paid}}
+	<b>paid</b>
+	{{else}}
+	<b>payment pending</b>
+	{{/if}}
+	{{else}}
+	<button type="submit" class="btn btn-danger membership-button">Update Profile</button>
+	{{/if}}
+</template>
+
+
+<template name="updateProfileForm">
+	<li class="list-group-item">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilename" placeholder="{{currentUser.profile.name}}">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofileaddress" placeholder="Address">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilecity" placeholder="City">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilestate" placeholder="State">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilezip" placeholder="Zip">
+				</div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsprofilebphone" placeholder="Phone Number">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10"><small>&nbsp;</small></div>
+				<div class="col-xs-10">
+					<button type="submit" class="btn btn-default acsprofilesubmit">Submit Profile</button>
+				</div>
+			</div>
+		</form>
+	</li>
+</template>
+
+<template name="addPlayerForm">
+	<li class="list-group-item">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerName" placeholder="{{currentUser.profile.name}}">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerDOB" placeholder="Date of Birth">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerContact" placeholder="Emergency Contact">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerPhone" placeholder="Emergency Contact Phone">
+				</div>
+				<div class="col-xs-10"></div>
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsPlayerMedical" placeholder="Medical Conditions">
+				</div>
+
+				<div class="col-xs-10"><small>&nbsp;</small></div>
+				<div class="col-xs-10">
+					<button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>
+				</div>
+			</div>
+		</form>
+	</li>
+</template>
+
+<template name="leagueOne">
+</template>
+
+<template name="leagueTwo">
+</template>
+
+<template name="leagueFutsal">
+</template>
+
+<template name="addTeam">
+	<button type="submit" class="btn btn-default acsaddteam">Create Team</button>
+</template>
+
+<template name="newTeamName">
+	<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsNewTeamName" placeholder="Enter Team Name">
+				</div>
+			</div>
+	</form>
+</template>
+
+
+<template name="leagueRequest">
+	<div class="input-group form-control">
+		<div class="radio">
+			<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+			League One
+			</div>
+			<div class="radio">
+			<input type="radio" name="optionsRadios" id="optionsRadios2" value="option">
+			League Two
+		</div>
+	</div>
+	<button type="submit" class="btn btn-default acssubmitteam">Submit</button>
 </template>
