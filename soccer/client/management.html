@@ -1,33 +1,42 @@
 <!-- Account/Player Management Dashboard -->
 
 <template name="management">
-	<div class="row management-drawer">
-		<div class="row">
-			<a id="username" class="user-info">{{currentUser.profile.name}}</a>
-		</div>
-
-		{{ #if showManagementDrawer }}
-		<div class="row">
-			<div id="management-actions" class="col-xs-4">
-				<h2>Manage Account</h2>
-				{{ > dashside }}
-				{{ > dashkids }}
-			</div>
-			<div class="user-info">
-				<div class="panel-heading">
-					{{> logout}}
+	<div class="row">
+		<div class="col-xs-12" id="management-drawer">
+			<div class="row">
+				<div class="col-xs-6 col-sm-5">
+					{{ #if showManagementDrawer }}
+					<h3 class=""><small>Manage Account</small></h3>
+					{{ /if }}
+				</div>
+				<div class="col-xs-6 col-sm-5 col-sm-offset-2 text-right">
+					<a id="username">{{currentUser.profile.name}} <span class="caret"></span></a>
 				</div>
 			</div>
+
+			{{ #if showManagementDrawer }}
+			<div class="row">
+				<div class="col-xs-6 col-sm-5" id="management-actions" >
+					{{ > userProfilePanel }}
+						{{ > addPlayerPanel }}
+					{{> logout}}
+				</div>
+				<div class="col-sm-7">
+				{{ #if showAddPlayerForm }}
+					{{> addPlayerForm}}
+				{{ /if }}
+				</div>
+			</div>
+			{{ /if }}
 		</div>
-		{{ /if }}
 	</div>
 </template>
 
 <template name="logout">
-	<button type="submit" class="btn btn-default logout-button">Logout</button>
+	<button type="submit" class="btn btn-default logout-button pull-right">Logout</button>
 </template>
 
-<template name="dashside">
+<template name="userProfilePanel">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -37,14 +46,14 @@
 			</div> -->
 			<div class="panel-body">
 				<ul class="list-group">
-					<li class="list-group-item">{{ > dashmem }} </li>
+					<li class="list-group-item">{{ > userMembership }} </li>
 					{{#if showmemForm}}
-					<div class="logout-button">{{ > dashUpdateProfile }}</div>
+					<div class="list-group-item">{{ > updateProfileForm }}</div>
 					{{/if}}
 					{{#if currentUser.profile.membership}}
-					<li class="list-group-item">League One: {{ > dashone }} </li>
-					<li class="list-group-item">League Two: {{ > dashtwo }} </li>
-					<li class="list-group-item">Futsal: {{ > dashfutsal }} </li>
+					<li class="list-group-item">League One: {{ > leagueOne }} </li>
+					<li class="list-group-item">League Two: {{ > leagueTwo }} </li>
+					<li class="list-group-item">Futsal: {{ > leagueFutsal }} </li>
 					{{/if}}
 				</ul>
 			</div>
@@ -53,7 +62,7 @@
 </div>
 </template>
 
-<template name="dashkids">
+<template name="addPlayerPanel">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -63,7 +72,7 @@
 				<div class="panel-body">
 					<ul class="list-group">
 						<li class="list-group-item"><button type="submit" class="btn btn-default add-adult">Add Adult Player</button></li>
-						<li class="list-group-item"><button type="submit" class="btn btn-default add-kid">Add Youth Player</button></li>
+						<li class="list-group-item"><button type="submit" class="btn btn-default add-youth">Add Youth Player</button></li>
 					</ul>
 				</div>
 			</div>
@@ -71,7 +80,7 @@
 	</div>
 </template>
 
-<template name="dashmem">
+<template name="userMembership">
 	{{#if currentUser.profile.membership}}
 	<b>Jan - Dec 2014 </b>
 	{{#if currentUser.profile.paid}}
@@ -80,12 +89,12 @@
 	<b>payment pending</b>
 	{{/if}}
 	{{else}}
-	<button type="submit" class="btn btn-danger membership-button">Update Profile</button>
+	<button type="submit" class="btn btn-danger updateProfileButton">Update Profile</button>
 	{{/if}}
 </template>
 
 
-<template name="dashUpdateProfile">
+<template name="updateProfileForm">
 	<li class="list-group-item">
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -121,7 +130,7 @@
 	</li>
 </template>
 
-<template name="dashAddPlayer">
+<template name="addPlayerForm">
 	<li class="list-group-item">
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -135,11 +144,11 @@
 				</div>
 				<div class="col-xs-10"></div>
 				<div class="col-xs-10">
-					<input type="text" class="form-control" id="acsPlayerContact" placeholder="Emergency Contact">
+					<input type="text" class="form-control" id="acsPlayerEmergencyContact" placeholder="Emergency Contact">
 				</div>
 				<div class="col-xs-10"></div>
 				<div class="col-xs-10">
-					<input type="text" class="form-control" id="acsPlayerPhone" placeholder="Emergency Contact Phone">
+					<input type="text" class="form-control" id="acsPlayerEmergencyPhone" placeholder="Emergency Contact Phone">
 				</div>
 				<div class="col-xs-10"></div>
 				<div class="col-xs-10">
@@ -148,9 +157,18 @@
 
 				<div class="col-xs-10"><small>&nbsp;</small></div>
 				<div class="col-xs-10">
-					<button type="submit" class="btn btn-default acsprofilesubmit">Create Player</button>
+					<button type="submit" class="btn btn-default acsPlayerSubmit">Create Player</button>
 				</div>
 			</div>
 		</form>
 	</li>
+</template>
+
+<template name="leagueOne">
+</template>
+
+<template name="leagueTwo">
+</template>
+
+<template name="leagueFutsal">
 </template>

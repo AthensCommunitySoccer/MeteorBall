@@ -1,26 +1,30 @@
 <template name="sidebar">
   {{#if currentUser}}
-    <!-- logged in -->
+  <!-- logged in -->
   {{else}}
-  <div class="row">
-    <div class="col-xs-12">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      {{ > existing }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      {{ > newuser }}
-    </div>
-  </div>
+  {{ > signinOrSignUp }}
   {{/if}}
+</template>
+
+<template name="signinOrSignUp">
+  <div class="row">
+    <div class="col-xs-12">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{ > userSigninForm }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{ > newUserSignUp }}
+    </div>
+  </div>
 </template>

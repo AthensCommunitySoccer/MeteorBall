@@ -1,6 +1,8 @@
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 if (Meteor.isClient) {
+  Meteor.subscribe("myPlayers");
+
   Meteor.startup(function () {
     Session.set("acsAccountOK", false);
     Session.set("acsAccountFAIL", false);
@@ -10,40 +12,18 @@ if (Meteor.isClient) {
     Session.set("acsLoginFAIL", false);
   });
 
-  Template.dashUpdateProfile.events({
-    'click button.btn.btn-default.acsprofilesubmit' : function(event) {
-      var profile = new Object;
-
-      profile.name = $("#acsprofilename").val();
-      profile.street = $("#acsprofileaddress").val();
-      profile.city = $("#acsprofilecity").val();
-      profile.state = $("#acsprofilestate").val();
-      profile.zip = $("#acsprofilezip").val();
-      profile.dob = $("#acsprofiledob").val();
-      profile.phone = $("#acsprofilephone").val();
-
-      profile.membership = true;
-
-      Meteor.call("updateUserProfile", profile, function(error, userId) {
-        console.log('Successfully updated with id ' + userId);
-      });
-
-      return;
-    }
-  });
-
-  Template.dashmem.events({
-    'click button.btn.btn-danger.membership-button' : function(event) {
+  Template.userMembership.events({
+    'click button.updateProfileButton' : function(event) {
       console.log('button clicked');
       Session.set("acsprofileform",true);
     }
   });
 
-  Template.dashside.showmemForm = function() {
+  Template.userProfilePanel.showmemForm = function() {
     return Session.get("acsprofileform");
   };
 
-  Template.existing.events({
+  Template.userSigninForm.events({
     'click button.btn.btn-default.login-button' : function(event) {
       event.preventDefault();
       acslogin = new Object();
@@ -77,16 +57,17 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.existing.loginBadEmail = function() {
+
+  Template.userSigninForm.loginBadEmail = function() {
     return Session.get("loginBadEmail");
   };
 
-  Template.existing.attemptLoginFAIL = function() {
+  Template.userSigninForm.attemptLoginFAIL = function() {
     return Session.get("acsLoginFAIL");
   };
 
-  Template.newuser.events({
-    'click button.btn.btn-default.acssignupsubmit' : function(event) {
+  Template.newUserSignUp.events({
+    'click button.acssignupsubmit' : function(event) {
       event.preventDefault();
 
       var trimInput = function(val) {
@@ -133,31 +114,24 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.newuser.showBadEmail = function() {
+  Template.newUserSignUp.showBadEmail = function() {
     return Session.get("showBadEmail");
   };
 
-  Template.newuser.showBadPass = function() {
+  Template.newUserSignUp.showBadPass = function() {
     return Session.get("showBadPass");
   };
 
-  Template.newuser.showAccountFail = function() {
+  Template.newUserSignUp.showAccountFail = function() {
     return Session.get("acsAccountFAIL");
   };
 
-  Template.newuser.showAccountOK = function() {
+  Template.newUserSignUp.showAccountOK = function() {
     return Session.get("acsAccountOK");
   };
 
-  Template.newuser.showAccountOK = function() {
+  Template.newUserSignUp.showAccountOK = function() {
     return Session.get("acsAccountOK");
   };
 
-  Template.dashAddPlayer.showAdultPlayer = function() {
-    return Session.get("acsAdultPlayer");
-  }
-
-  Template.dashAddPlayer.showYouthPlayer = function() {
-    return Session.get("acsYouthPlayer");
-  }
 }
