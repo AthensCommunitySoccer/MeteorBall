@@ -54,6 +54,11 @@
 					<li class="list-group-item">League One: {{ > leagueOne }} </li>
 					<li class="list-group-item">League Two: {{ > leagueTwo }} </li>
 					<li class="list-group-item">Futsal: {{ > leagueFutsal }} </li>
+					<li class="list-group-item">Create a team: {{ > addTeam}} </li>
+					{{/if}}
+					{{#if showCreateTeam}}
+							<li class="list-group-item">Team Name:{{ > newTeamName}} </li>
+							<li class="list-group-item">Requested League:{{ > leagueRequest}} </li>
 					{{/if}}
 				</ul>
 			</div>
@@ -171,4 +176,33 @@
 </template>
 
 <template name="leagueFutsal">
+</template>
+
+<template name="addTeam">
+	<button type="submit" class="btn btn-default acsaddteam">Create Team</button>
+</template>
+
+<template name="newTeamName">
+	<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" id="acsNewTeamName" placeholder="Enter Team Name">
+				</div>
+			</div>
+	</form>
+</template>
+
+
+<template name="leagueRequest">
+	<div class="input-group form-control">
+		<div class="radio">
+			<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+			League One
+			</div>
+			<div class="radio">
+			<input type="radio" name="optionsRadios" id="optionsRadios2" value="option">
+			League Two
+		</div>
+	</div>
+	<button type="submit" class="btn btn-default acssubmitteam">Submit</button>
 </template>
