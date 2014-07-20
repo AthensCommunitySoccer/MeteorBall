@@ -1,6 +1,9 @@
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 if (Meteor.isClient) {
+  Meteor.subscribe("myTeams");
+  Meteor.subscribe("allTeams");
+
   Meteor.startup(function () {
     Session.set("acsAccountOK", false);
     Session.set("acsAccountFAIL", false);
@@ -8,6 +11,7 @@ if (Meteor.isClient) {
     Session.set("showBadPass", false);
     Session.set("loginBadEmail", false);
     Session.set("acsLoginFAIL", false);
+    Session.set("acsCreateTeam", false);
   });
 
   Template.updateProfileForm.events({
@@ -157,19 +161,38 @@ if (Meteor.isClient) {
     return Session.get("acsCreateTeam");
   };
 
-
-  Template.leagueRequest.events ({
-    'click button.btn.btn-default.acssubmitteam' : function(event) {
-      console.log('submit button clicked');
-      Session.set("acsCreateTeam",false);
-    }
-    });
-
   Template.addTeam.events ({
-    'click button.btn.btn-default.acsaddteam' : function(event) {
-      console.log('new button clicked');
-      Session.set("acsCreateTeam",true);
+    'click button.acsAddTeam' : function(event) {
+      Session.set("acsCreateTeam", !Session.get("acsCreateTeam"));
+    }
+
+    // 'click button.acsAddTeam' : function(event) {
+
+    // }
+
+  });
+
+  Template.newTeamName.events({
+    'click button.acsCreateTeam' : function(event) {
+      console.log('Create Team button clicked');
+
+      var team = new Object;
+      team.name = $("#acsNewTeamName").val();
+      // team.requestedLeage = $("acsNewTeamName").val();
+      console.log(team);
+
+      Meteor.call("addTeam", team, function(error, teamId) {
+        console.log('Successfully added team with id ' + teamId);
+        Session.set("acsCreateTeam", false);
+      });
     }
   });
 
+  Template.teamsList.teams = function() {
+    return Teams.find().fetch();
+  };
+
+  Template.team.creator_name = function() {
+    return Meteor.users.findOne(this.creatorId).profile.name;
+  };
 }

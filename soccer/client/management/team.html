@@ -1,0 +1,25 @@
+<template name="teamsList">
+  <div class="teams-list">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Team List</h4>
+        </div>
+
+        <div class="panel-body">
+          <ul class="list-group">
+            {{ #each teams}}
+              {{ > team }}
+            {{ /each }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="team">
+  <div class="team-name">
+    <li class="list-group-item">{{ name }} created by {{ creator_name }}</li>
+  </div>
+</template>

@@ -18,6 +18,7 @@
 			<div class="row">
 				<div class="col-xs-6 col-sm-5" id="management-actions" >
 					{{ > userProfilePanel }}
+					{{ > teamsList }}
 					{{ > addPlayerPanel }}
 				</div>
 				<div class="user-info col-xs-6 col-sm-5 col-sm-offset-2">
@@ -55,7 +56,7 @@
 					{{/if}}
 					{{#if showCreateTeam}}
 							<li class="list-group-item">Team Name:{{ > newTeamName}} </li>
-							<li class="list-group-item">Requested League:{{ > leagueRequest}} </li>
+							<!-- <li class="list-group-item">Requested League:{{ > leagueRequest}} </li> -->
 					{{/if}}
 				</ul>
 			</div>
@@ -81,6 +82,27 @@
 		</div>
 	</div>
 </template>
+
+<template name="teamPanel">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">Teams I created</h4>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+            {{ > teams}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="teams">
+</template>
+
 
 <template name="userMemerbship">
 	{{#if currentUser.profile.membership}}
@@ -176,7 +198,7 @@
 </template>
 
 <template name="addTeam">
-	<button type="submit" class="btn btn-default acsaddteam">Create Team</button>
+    <button type="submit" class="btn btn-default acsAddTeam">Add Team</button>
 </template>
 
 <template name="newTeamName">
@@ -184,6 +206,8 @@
 			<div class="form-group">
 				<div class="col-xs-10">
 					<input type="text" class="form-control" id="acsNewTeamName" placeholder="Enter Team Name">
+
+          <button type="submit" class="btn btn-default acsCreateTeam">Create Team</button>
 				</div>
 			</div>
 	</form>
